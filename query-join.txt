@@ -69,3 +69,17 @@ QUERY con GROUP BY
 SELECT COUNT(YEAR(`students`.`enrolment_date`)) AS `totale_iscritti`, YEAR(`students`.`enrolment_date`) AS `Anno di iscrizione`
 FROM `students`
 GROUP BY YEAR(`students`.`enrolment_date`);
+
+2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+
+SELECT COUNT(*) AS `totale_insegnanti`, `teachers`.`office_address` AS `indirizzo_ufficio`
+FROM `teachers`
+GROUP BY `indirizzo_ufficio`;
+
+3. Calcolare la media dei voti di ogni appello d'esame
+
+SELECT AVG(`exam_student`.`vote`) AS `media_voti`, `exams`.`date`
+FROM `exam_student`
+INNER JOIN `exams`
+ON `exams`.`id` = `exam_student`.`exam_id`
+GROUP BY `exams`.`date`;
